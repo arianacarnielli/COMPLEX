@@ -21,7 +21,7 @@ class Graphe:
         self.graphe = nx.Graph()
 
     
-    def readfile(self, nomfichier):
+    def readFile(self, nomfichier):
         """
         """
         with open(nomfichier, 'r') as file:
@@ -45,7 +45,7 @@ class Graphe:
                 self.graphe.add_edge(debut, fin)
     
     
-    def supprimirSommet(self, sommet):
+    def supprimerSommet(self, sommet):
         """
         """
         g2 = Graphe()
@@ -54,7 +54,7 @@ class Graphe:
         
         return g2
         
-    def supprimirSommets(self, sommets):
+    def supprimerSommets(self, sommets):
         """
         """
         g2 = Graphe()
@@ -71,7 +71,7 @@ class Graphe:
         """
         """
         degres = self.degresSommet()
-        max(degres, key=lambda key: stats[key])
+        return max(degres, key=lambda key: degres[key])
 
 
             
