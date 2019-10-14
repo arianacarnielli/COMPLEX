@@ -9,9 +9,8 @@ Created on Thu Oct 10 16:33:23 2019
 """
 Méthodes initiales pour le projet de COMPLEX
 """
-
-
 import networkx as nx
+import numpy as np
 
 class Graphe:
     
@@ -36,6 +35,7 @@ class Graphe:
             assert file.readline() == "Nombre d aretes\n"
             nbAretes = int(file.readline())
             assert file.readline() == "Aretes\n"
+            res = self.__init__()
             
             for i in range(nbAretes):
                 line = file.readline()
@@ -73,11 +73,34 @@ class Graphe:
         degres = self.degresSommet()
         return max(degres, key=lambda key: degres[key])
 
-
+    def creerAlea(self, nbSommets, probaArete):
+        """
+        """
+        self.graphe.add_nodes_from(np.arange(nbSommets))
+            
+        for i in range(nbSommets):
+            for j in range(i + 1, nbSommets):
+                if np.random.rand() <= probaArete:
+                    self.graphe.add_edge(i, j)
             
             
-            
-            
-            
+    def algoCouplage(self):
+        """
+        """
+        couverture = set()
+        for arete in (self.graphe.edges):
+            i, j = arete
+            if (i not in couverture) and (j not in couverture):
+                couverture.add(i)
+                couverture.add(j)
+        return couverture
+    
+    def algoGlouton(self):
+        """
+        """
+        couverture = set()
+        aretes = self.graphe.edges
         
-            
+        
+        
+        return couverture
