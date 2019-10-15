@@ -35,7 +35,6 @@ class Graphe:
             assert file.readline() == "Nombre d aretes\n"
             nbAretes = int(file.readline())
             assert file.readline() == "Aretes\n"
-            res = self.__init__()
             
             for i in range(nbAretes):
                 line = file.readline()
@@ -98,9 +97,46 @@ class Graphe:
     def algoGlouton(self):
         """
         """
+        g = self
         couverture = set()
-        aretes = self.graphe.edges
-        
-        
-        
+        while len(g.graphe.edges) != 0:
+            v = g.degreMax()
+            couverture.add(v)
+            g = g.supprimerSommet(v)
         return couverture
+    
+    def branchement(self):
+        """
+        """
+        #la pile reçoit les sommets retirés du graphe aka une couverture partielle
+        pile = []
+        #on commence avec la couverture partielle vide
+        pile.append(set())
+        
+        couvMin = set(self.graphe.nodes)
+        
+        while pile != []:
+            #on retire le dernier élément qui a été mis dans la pile
+            couvPart = pile.pop()
+            #on cree le graphe sans les sommets dans la couverture partiel
+            gPart = self.supprimerSommets(couvPart)
+            aretes = list(gPart.graphe.edges)
+            
+            #si on a encore des aretes, on continue a empiler
+            if len(aretes) > 0:
+                u, v = aretes[0]
+                pile.append(couvPart | {u})
+                pile.append(couvPart | {v})
+            #sinon on est au cas de base, on voit si la taille de la couverture
+            #est plus petite que ce qu'on avait déjà
+            else:
+                couvMin = couvPart if len(couvPart) < len(couvMin) else couvMin
+            
+        return couvMin
+    
+    
+    
+    
+    
+    
+        
