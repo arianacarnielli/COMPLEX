@@ -105,7 +105,49 @@ class Graphe:
             g = g.supprimerSommet(v)
         return couverture
     
-    def branchement(self):
+    def algoBranchement(self, debug = False):
+        """
+        """
+        #la pile reçoit les sommets retirés du graphe aka une couverture partielle
+        pile = []
+        #on commence avec la couverture partielle vide
+        pile.append(set())
+        
+        #compteur de noeuds visités
+        n = 0
+        
+        couvMin = set(self.graphe.nodes)
+        
+        while pile != []:
+            #on retire le dernier élément qui a été mis dans la pile
+            couvPart = pile.pop()
+            
+            #on augmente le compteur de noeuds visites
+            n += 1
+            
+            #on cree le graphe sans les sommets dans la couverture partiel
+            gPart = self.supprimerSommets(couvPart)
+            aretes = list(gPart.graphe.edges)
+            
+            #prints debug
+            if debug:
+                print(n)
+                print(gPart.graphe.nodes)
+                print(aretes)
+            
+            #si on a encore des aretes, on continue a empiler
+            if len(aretes) > 0:
+                u, v = aretes[0]
+                pile.append(couvPart | {u})
+                pile.append(couvPart | {v})
+            #sinon on est au cas de base, on voit si la taille de la couverture
+            #est plus petite que ce qu'on avait déjà
+            else:
+                couvMin = couvPart if len(couvPart) < len(couvMin) else couvMin
+            
+        return couvMin, n
+    
+    def algoBranchementBorne(self):
         """
         """
         #la pile reçoit les sommets retirés du graphe aka une couverture partielle
@@ -125,8 +167,28 @@ class Graphe:
             #si on a encore des aretes, on continue a empiler
             if len(aretes) > 0:
                 u, v = aretes[0]
-                pile.append(couvPart | {u})
-                pile.append(couvPart | {v})
+                
+                #calcul d'une solution realisable qui sert comme borne max
+                #sur le graphe partiel par l'algorithme de couplage.
+                coupPart = gPart.algoCouplage()
+                
+                #calcul d'une borne min
+                n = len(gPart.graphe.nodes)
+                m = len(gPart.graphe.edges)
+                
+                b1 = m // gPart.degreMax()
+                
+                b2 = borneMax 
+                
+                b3 = (2 * n - 1 - np.sqrt((2 *n - 1)**2 - 8 * m)) / 2
+                
+                borneMin = np.max(b1, b2, b3)
+                
+                #on ajoute les couvertures partiels a la pile que si on a la 
+                #possibilité de trouver la solution maximale
+                if borneMin <= borneMax:
+                    pile.append(couvPart | {u})
+                    pile.append(couvPart | {v})
             #sinon on est au cas de base, on voit si la taille de la couverture
             #est plus petite que ce qu'on avait déjà
             else:
