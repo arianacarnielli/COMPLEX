@@ -147,7 +147,7 @@ class Graphe:
             
         return couvMin, n
     
-    def algoBranchementBorne(self):
+    def algoBranchementBorne(self, debug = False):
         """
         """
         #la pile reçoit les sommets retirés du graphe aka une couverture partielle
@@ -155,7 +155,13 @@ class Graphe:
         #on commence avec la couverture partielle vide
         pile.append(set())
         
+        #compteur de noeuds visités
+        cpt = 0
+        
         couvMin = set(self.graphe.nodes)
+        
+        #borneMax pour l'elagage
+        borneMax = len(couvMin)
         
         while pile != []:
             #on retire le dernier élément qui a été mis dans la pile
@@ -164,25 +170,32 @@ class Graphe:
             gPart = self.supprimerSommets(couvPart)
             aretes = list(gPart.graphe.edges)
             
+            #on augmente le compteur de noeuds visites
+            cpt += 1
+            
+            #prints debug
+            if debug:
+                print(cpt)
+                print(gPart.graphe.nodes)
+                print(aretes)
+            
             #si on a encore des aretes, on continue a empiler
             if len(aretes) > 0:
                 u, v = aretes[0]
-                
-                #calcul d'une solution realisable qui sert comme borne max
-                #sur le graphe partiel par l'algorithme de couplage.
+                #calcul d'une solution realisable sur le graphe partiel 
+                #par l'algorithme de couplage.
                 coupPart = gPart.algoCouplage()
+                borneMax = min(borneMax, (len(couvPart) + len(coupPart)))
                 
                 #calcul d'une borne min
                 n = len(gPart.graphe.nodes)
                 m = len(gPart.graphe.edges)
                 
-                b1 = m // gPart.degreMax()
-                
-                b2 = borneMax 
-                
+                degres = gPart.degresSommet()
+                b1 = m // max(degres.values())
+                b2 = len(coupPart) / 2
                 b3 = (2 * n - 1 - np.sqrt((2 *n - 1)**2 - 8 * m)) / 2
-                
-                borneMin = np.max(b1, b2, b3)
+                borneMin = len(couvPart) + max(b1, b2, b3)
                 
                 #on ajoute les couvertures partiels a la pile que si on a la 
                 #possibilité de trouver la solution maximale
@@ -193,8 +206,10 @@ class Graphe:
             #est plus petite que ce qu'on avait déjà
             else:
                 couvMin = couvPart if len(couvPart) < len(couvMin) else couvMin
-            
-        return couvMin
+                borneMax = len(couvMin)
+        return couvMin, cpt
+    
+    
     
     
     
