@@ -170,6 +170,7 @@ class Graphe:
         Determine une solution approche au probleme de la couverture minimale
         (Vertex cover) en utilisant un algorithme glouton qui selectionne les 
         sommets en ordre decroissant de degres.
+        À chaque suppression de sommet, une nouvelle copie du graphe est faite.
         Returns : 
             un ensemble de sommets qui forment une couverture du graphe.
         """
@@ -179,6 +180,25 @@ class Graphe:
             v = g.degreMax()
             couverture.add(v)
             g = g.supprimerSommet(v)
+        return couverture
+    
+    def algoGloutonSansCopies(self):
+        """
+        Determine une solution approche au probleme de la couverture minimale
+        (Vertex cover) en utilisant un algorithme glouton qui selectionne les 
+        sommets en ordre decroissant de degres.
+        Une seule copie du graphe est faite au début et modifiée à chaque
+        étape, ce qui permet d'accélerer l'exécution.
+        Returns : 
+            un ensemble de sommets qui forment une couverture du graphe.
+        """
+        g = Graphe()
+        g.graphe = nx.Graph(self.graphe)
+        couverture = set()
+        while len(g.graphe.edges) != 0:
+            v = g.degreMax()
+            couverture.add(v)
+            g.graphe.remove_node(v)
         return couverture
     
     def algoBranchement(self, debug = False):
@@ -281,7 +301,7 @@ class Graphe:
                     coupPart = gPart.algoCouplage()
                 elif methodeMax == 1:
                     #par l'agorithme glouton
-                    coupPart = gPart.algoGlouton() 
+                    coupPart = gPart.algoGloutonSansCopies() 
                 #mis-a-jour de la borneMax
                 if methodeMax != 2:
                     borneMax = min(borneMax, (len(couvPart) + len(coupPart)))

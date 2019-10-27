@@ -1,0 +1,45 @@
+\begin{tikzpicture}
+\node[draw, circle] (A1) at (0, 2) {};
+\node[draw, circle] (A2) at (5, 2) {};
+\node[draw, circle] (A3) at (8, 2) {};
+\node[draw, circle] (A4) at (10, 2) {};
+
+\node[draw, circle] (B11) at (0, 0) {};
+\node[draw, circle] (B12) at (1, 0) {};
+\node[draw, circle] (B13) at (2, 0) {};
+\node[draw, circle] (B14) at (3, 0) {};
+
+\node[draw, circle] (B21) at (5, 0) {};
+\node[draw, circle] (B22) at (6, 0) {};
+
+\node[draw, circle] (B31) at (8, 0) {};
+
+\node[draw, circle] (B41) at (10, 0) {};
+
+\draw (B11) -- (A1);
+\draw (B12) -- (A2);
+\draw (B13) -- (A3);
+\draw (B14) -- (A4);
+
+\draw (B21) -- (A1);
+\draw (B21) -- (A2);
+\draw (B22) -- (A3);
+\draw (B22) -- (A4);
+
+\draw (B31) -- (A1);
+\draw (B31) -- (A2);
+\draw (B31) -- (A3);
+
+\draw (B41) -- (A1);
+\draw (B41) -- (A2);
+\draw (B41) -- (A3);
+\draw (B41) -- (A4);
+
+\node at (11, 2) {$A$};
+\node at (11, 0) {$B$};
+
+\node at (1.5, -0.5) {$B_1$};
+\node at (5.5, -0.5) {$B_2$};
+\node at (8, -0.5) {$B_3$};
+\node at (10, -0.5) {$B_4$};
+\end{tikzpicture}
