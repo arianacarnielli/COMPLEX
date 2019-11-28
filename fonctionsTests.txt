@@ -1,0 +1,128 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Oct 25 22:55:40 2019
+
+@author: Ariana CARNIELLI
+Fonctions de test pour le projet de COMPLEX 2019-2020
+"""
+
+from projet import Graphe
+from progressBar import ProgressBar
+
+import time as t
+import numpy as np
+
+def testTempsN(nMax, p, nomMethode, fois = 10, **kwargs):
+    """
+    Teste le temps d'execution moyen d'un algorithme pour le problème de couverture de graphe passe par l'argument nomMethode. Pour cela, la fonction cree des graphes aleatoires a n sommets pour 10 valeurs de n allant de nMax/10 jusqu'à nMax, avec un choix aléatoire de présence d'arêtes donné par la probabilite constante p. Pour chaque n et p, le temps est calcule par une moyenne sur fois graphes.
+    
+    Args :
+        nMax : valeur maximale du nombre de sommets du graphe.
+        p : probabilité de présence d'une arete, constante.
+        nomMethode : chaine de caracteres donnant le nom de la méthode à tester.
+        fois (facultatif) : nombre de repetitions pour chaque valeur de n et p.
+        **kwargs (facultatif) : arguments passés à la methode à tester.
+        
+    Returns : 
+        res : tableau numpy de taille 10 avec les temps moyens d'exécution en secondes pour chaque n.
+        n : tableau numpy de taille 10 contenant les valeurs de n utilises dans les tests.
+    """
+    n = np.linspace(nMax / 10, nMax, 10, dtype = int)
+    res = np.zeros(n.shape)
+    progressBar = ProgressBar(maxValue = n.size * fois)
+    
+    for ni in range(n.size):
+        for f in range(fois):
+            progressBar.update(ni * fois + f + 1)
+            graphe = Graphe(nbSommets = n[ni], probaArete = p)
+            start =  t.process_time()
+            getattr(graphe, nomMethode)(**kwargs)
+            res[ni] += t.process_time() - start
+    print("")
+    
+    return res / fois, n
+
+def testTempsPfunc(nMax, p, nomMethode, fois = 10, **kwargs):
+    """
+    Teste le temps d'execution moyen d'un algorithme pour le problème de couverture de graphe passe par l'argument nomMethode. Son fonctinnement est identique à la fonction testTempsN, a part le fait que l'argument p est maintenant une fonction de n.
+    
+    Args :
+        nMax : valeur maximale du nombre de sommets du graphe.
+        p : fonction prennant en argument une valeur de n et renvoyant la probabilite de presence d'une arete pour cette valeur de n.
+        nomMethode : chaine de caracteres donnant le nom de la méthode à tester.
+        fois (facultatif) : nombre de repetitions pour chaque valeur de n et p.
+        **kwargs (facultatif) : arguments passés à la methode à tester.
+        
+    Returns : 
+        res : tableau numpy de taille 10 avec les temps moyens d'exécution en secondes pour chaque n.
+        n : tableau numpy de taille 10 contenant les valeurs de n utilises dans les tests.
+    """
+    n = np.linspace(nMax / 10, nMax, 10, dtype = int)
+    res = np.zeros(n.shape)
+    progressBar = ProgressBar(maxValue = n.size * fois)
+    
+    for ni in range(n.size):
+        for f in range(fois):
+            progressBar.update(ni * fois + f + 1)
+            graphe = Graphe(nbSommets = n[ni], probaArete = p(n[ni]))
+            start =  t.process_time()
+            getattr(graphe, nomMethode)(**kwargs)
+            res[ni] += t.process_time() - start
+    print("")
+    
+    return res / fois, n
+
+def testEcart(nMax, p, nomMethode, fois = 10):
+    """
+    Teste l'ecart entre les solutions donnees par les algorithmes approches et la solution exacte. L'algorithme approche a etre teste est donne par l'argument nomMethode, alors que l'algorithme exact de comparaison est l'algorithme de branchement amélioré avec sommets pris par ordre decroissant de degre et elimination de sommets de degre 1. La fonction cree des graphes aleatoires a n sommets pour 10 valeurs de n allant de nMax/10 jusqu'à nMax, avec un choix aléatoire de présence d'arêtes donné par la probabilite constante p. Pour chaque n et p, le temps est calcule par une moyenne sur fois graphes.
+    
+    Args :
+        nMax : valeur maximale du nombre de sommets du graphe.
+        p : probabilité de présence d'une arete, constante.
+        nomMethode : chaine de caracteres donnant le nom de la méthode à tester.
+        fois (facultatif) : nombre de repetitions pour chaque valeur de n et p.
+        
+    Returns : 
+        res : tableau numpy de taille 10 x fois avec, en ligne i et colonne j, le rapport entre la longueur de la solution trouvee par nomMethode et la solution exacte avec un graphe a n[i] sommets et lors de l'execution j.
+        n : tableau numpy de taille 10 contenant les valeurs de n utilises dans les tests.
+    """
+    n = np.linspace(nMax / 10, nMax, 10, dtype = int)
+    res = np.zeros((n.size, fois))
+    progressBar = ProgressBar(maxValue = n.size * fois)
+    
+    for ni in range(n.size):
+        for f in range(fois):
+            progressBar.update(ni * fois + f + 1)
+            graphe = Graphe(nbSommets = n[ni], probaArete = p)
+            resMethode = getattr(graphe, nomMethode)()
+            resExacte, _ = graphe.algoBranchementAmeliore(sommetMax = True, elimDegre1 = True)
+            res[ni, f] = len(resMethode) / len(resExacte) if len(resExacte) != 0 else 1
+    print("")
+    
+    return res, n
+
+def testNoeud(n, p, listAlgo):
+    """
+    Calcule le nombre de noeuds dans l'arbre de branchement visites par les differents algorithmes de branchement passes dans listAlgo.
+    
+    Args :
+        n : tableau numpy avec les valeurs de n a etre testes.
+        p : tableau numpy de meme taille que n avec les valeurs correspondants de p a etre testes.
+        listAlgo : une liste d'algorithmes a etre testes. Elle doit etre une liste de tuples. Dans chaque tuple, la premiere entree est une chaine de caracteres contenant le nom de la methode utilisee et la deuxieme entree doit etre un dictionnaire avec les arguments passes a la methode. Les cles de ce dictionnaire sont les noms des arguments (chaines de caracteres) et les valeurs sont les valeurs des arguments.
+    
+    Returns :
+        res : tableau numpy de taille len(listAlgo) x n.size contenant, en ligne i et colonne j, le nombre de noeuds visites par l'algorithme listAlgo[i] dans un graphe aléatoire a n[j] sommets et probabilite d'aretes p[j].
+    """
+    assert n.size == p.size
+    res = np.zeros((len(listAlgo), n.size), dtype = int)
+    progressBar = ProgressBar(maxValue = n.size * len(listAlgo))
+    
+    for ni in range(n.size):
+        for i, (algoName, algoArgs) in enumerate(listAlgo):
+            progressBar.update(ni * len(listAlgo) + i + 1)
+            graphe = Graphe(nbSommets = n[ni], probaArete = p[ni])
+            _, noeuds = getattr(graphe, algoName)(**algoArgs)
+            res[i, ni] = noeuds
+    print("")
+    
+    return res

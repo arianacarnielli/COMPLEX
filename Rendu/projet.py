@@ -420,22 +420,9 @@ class Graphe:
         return couvMin, cpt
     
     
-
-if __name__ == "__main__":
     
-    g = Graphe(nomFichier = "exempleinstance.txt")
-    print("Sommets du graphe :", g.graphe.nodes)
-    print("Aretes du graphe :", g.graphe.edges)
     
-    couvCouplage = g.algoCouplage()
-    print("couverture par l'algorithme de couplage :", couvCouplage)
     
-    couvGlouton = g.algoGlouton()
-    print("couverture par l'algorithme glouton :", couvGlouton)
-    
-    couvExacte, quantNoeuds = g.algoBranchementAmeliore(sommetMax = True, elimDegre1 = True)
-    print("couverture par l'algorithme de branchement :", couvExacte)
-    print("quantité de noeuds visités :", quantNoeuds)
     
     
     

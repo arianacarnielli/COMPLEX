@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module fonctionsTests</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>fonctionsTests</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Cariana%5Cdocumentos%5Cfaculdade%5Ccomplex%5Cfonctionstests.py">d:\ariana\documentos\faculdade\complex\fonctionstests.py</a></font></td></tr></table>
+    <p><tt>Created&nbsp;on&nbsp;Fri&nbsp;Oct&nbsp;25&nbsp;22:55:40&nbsp;2019<br>
+&nbsp;<br>
+@author:&nbsp;Ariana&nbsp;CARNIELLI<br>
+Fonctions&nbsp;de&nbsp;test&nbsp;pour&nbsp;le&nbsp;projet&nbsp;de&nbsp;COMPLEX&nbsp;2019-2020</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-testEcart"><strong>testEcart</strong></a>(nMax, p, nomMethode, fois=10)</dt><dd><tt>Teste&nbsp;l'ecart&nbsp;entre&nbsp;les&nbsp;solutions&nbsp;donnees&nbsp;par&nbsp;les&nbsp;algorithmes&nbsp;approches&nbsp;et&nbsp;<br>
+la&nbsp;solution&nbsp;exacte.&nbsp;L'algorithme&nbsp;approche&nbsp;a&nbsp;etre&nbsp;teste&nbsp;est&nbsp;donne&nbsp;par&nbsp;<br>
+l'argument&nbsp;nomMethode,&nbsp;alors&nbsp;que&nbsp;l'algorithme&nbsp;exact&nbsp;de&nbsp;comparaison&nbsp;est&nbsp;<br>
+l'algorithme&nbsp;de&nbsp;branchement&nbsp;ameliore&nbsp;avec&nbsp;sommets&nbsp;pris&nbsp;par&nbsp;ordre&nbsp;<br>
+decroissant&nbsp;de&nbsp;degre&nbsp;et&nbsp;elimination&nbsp;de&nbsp;sommets&nbsp;de&nbsp;degre&nbsp;1.&nbsp;<br>
+La&nbsp;fonction&nbsp;cree&nbsp;des&nbsp;graphes&nbsp;aleatoires&nbsp;a&nbsp;n&nbsp;sommets&nbsp;pour&nbsp;10&nbsp;valeurs&nbsp;de&nbsp;n&nbsp;<br>
+allant&nbsp;de&nbsp;nMax/10&nbsp;jusqu'à&nbsp;nMax,&nbsp;avec&nbsp;un&nbsp;choix&nbsp;aleatoire&nbsp;de&nbsp;presence&nbsp;<br>
+d'aretes&nbsp;donne&nbsp;par&nbsp;la&nbsp;probabilite&nbsp;constante&nbsp;p.&nbsp;Pour&nbsp;chaque&nbsp;n&nbsp;et&nbsp;p,&nbsp;le&nbsp;temps<br>
+est&nbsp;calcule&nbsp;par&nbsp;une&nbsp;moyenne&nbsp;sur&nbsp;fois&nbsp;graphes.<br>
+&nbsp;<br>
+Args&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nMax&nbsp;:&nbsp;valeur&nbsp;maximale&nbsp;du&nbsp;nombre&nbsp;de&nbsp;sommets&nbsp;du&nbsp;graphe.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;:&nbsp;probabilite&nbsp;de&nbsp;presence&nbsp;d'une&nbsp;arete,&nbsp;constante.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nomMethode&nbsp;:&nbsp;chaine&nbsp;de&nbsp;caracteres&nbsp;donnant&nbsp;le&nbsp;nom&nbsp;de&nbsp;la&nbsp;methode&nbsp;a&nbsp;tester.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fois&nbsp;(facultatif)&nbsp;:&nbsp;nombre&nbsp;de&nbsp;repetitions&nbsp;pour&nbsp;chaque&nbsp;valeur&nbsp;de&nbsp;n&nbsp;et&nbsp;p.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;res&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;taille&nbsp;10&nbsp;x&nbsp;fois&nbsp;avec,&nbsp;en&nbsp;ligne&nbsp;i&nbsp;et&nbsp;colonne&nbsp;j,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;le&nbsp;rapport&nbsp;entre&nbsp;la&nbsp;longueur&nbsp;de&nbsp;la&nbsp;solution&nbsp;trouvee&nbsp;par&nbsp;nomMethode&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;et&nbsp;la&nbsp;solution&nbsp;exacte&nbsp;avec&nbsp;un&nbsp;graphe&nbsp;a&nbsp;n[i]&nbsp;sommets&nbsp;et&nbsp;lors&nbsp;de&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;l'execution&nbsp;j.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;taille&nbsp;10&nbsp;contenant&nbsp;les&nbsp;valeurs&nbsp;de&nbsp;n&nbsp;utilises&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dans&nbsp;les&nbsp;tests.</tt></dd></dl>
+ <dl><dt><a name="-testNoeud"><strong>testNoeud</strong></a>(n, p, listAlgo)</dt><dd><tt>Calcule&nbsp;le&nbsp;nombre&nbsp;de&nbsp;noeuds&nbsp;dans&nbsp;l'arbre&nbsp;de&nbsp;branchement&nbsp;visites&nbsp;par&nbsp;les&nbsp;<br>
+differents&nbsp;algorithmes&nbsp;de&nbsp;branchement&nbsp;passes&nbsp;dans&nbsp;listAlgo.<br>
+&nbsp;<br>
+Args&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;avec&nbsp;les&nbsp;valeurs&nbsp;de&nbsp;n&nbsp;a&nbsp;etre&nbsp;testes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;meme&nbsp;taille&nbsp;que&nbsp;n&nbsp;avec&nbsp;les&nbsp;valeurs&nbsp;correspondants&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;de&nbsp;p&nbsp;a&nbsp;etre&nbsp;testes.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;listAlgo&nbsp;:&nbsp;une&nbsp;liste&nbsp;d'algorithmes&nbsp;a&nbsp;etre&nbsp;testes.&nbsp;Elle&nbsp;doit&nbsp;etre&nbsp;une&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;liste&nbsp;de&nbsp;tuples.&nbsp;Dans&nbsp;chaque&nbsp;tuple,&nbsp;la&nbsp;premiere&nbsp;entree&nbsp;est&nbsp;une&nbsp;chaine&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;de&nbsp;caracteres&nbsp;contenant&nbsp;le&nbsp;nom&nbsp;de&nbsp;la&nbsp;methode&nbsp;utilisee&nbsp;et&nbsp;la&nbsp;deuxieme&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;entree&nbsp;doit&nbsp;etre&nbsp;un&nbsp;dictionnaire&nbsp;avec&nbsp;les&nbsp;arguments&nbsp;passes&nbsp;a&nbsp;la&nbsp;methode.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Les&nbsp;cles&nbsp;de&nbsp;ce&nbsp;dictionnaire&nbsp;sont&nbsp;les&nbsp;noms&nbsp;des&nbsp;arguments&nbsp;(chaines&nbsp;de&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;caracteres)&nbsp;et&nbsp;les&nbsp;valeurs&nbsp;sont&nbsp;les&nbsp;valeurs&nbsp;des&nbsp;arguments.<br>
+&nbsp;<br>
+Returns&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;res&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;taille&nbsp;len(listAlgo)&nbsp;x&nbsp;n.size&nbsp;contenant,&nbsp;en&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ligne&nbsp;i&nbsp;et&nbsp;colonne&nbsp;j,&nbsp;le&nbsp;nombre&nbsp;de&nbsp;noeuds&nbsp;visites&nbsp;par&nbsp;l'algorithme&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;listAlgo[i]&nbsp;dans&nbsp;un&nbsp;graphe&nbsp;aleatoire&nbsp;a&nbsp;n[j]&nbsp;sommets&nbsp;et&nbsp;probabilite&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;d'aretes&nbsp;p[j].</tt></dd></dl>
+ <dl><dt><a name="-testTempsN"><strong>testTempsN</strong></a>(nMax, p, nomMethode, fois=10, **kwargs)</dt><dd><tt>Teste&nbsp;le&nbsp;temps&nbsp;d'execution&nbsp;moyen&nbsp;d'un&nbsp;algorithme&nbsp;pour&nbsp;le&nbsp;probleme&nbsp;de&nbsp;<br>
+couverture&nbsp;de&nbsp;graphe&nbsp;passe&nbsp;par&nbsp;l'argument&nbsp;nomMethode.&nbsp;<br>
+Pour&nbsp;cela,&nbsp;la&nbsp;fonction&nbsp;cree&nbsp;des&nbsp;graphes&nbsp;aleatoires&nbsp;a&nbsp;n&nbsp;sommets&nbsp;pour&nbsp;10&nbsp;<br>
+valeurs&nbsp;de&nbsp;n&nbsp;allant&nbsp;de&nbsp;nMax/10&nbsp;jusqu'a&nbsp;nMax,&nbsp;avec&nbsp;un&nbsp;choix&nbsp;aleatoire&nbsp;de&nbsp;<br>
+presence&nbsp;d'aretes&nbsp;donne&nbsp;par&nbsp;la&nbsp;probabilite&nbsp;constante&nbsp;p.&nbsp;<br>
+Pour&nbsp;chaque&nbsp;n&nbsp;et&nbsp;p,&nbsp;le&nbsp;temps&nbsp;est&nbsp;calcule&nbsp;par&nbsp;une&nbsp;moyenne&nbsp;sur&nbsp;fois&nbsp;graphes.<br>
+&nbsp;<br>
+Args&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nMax&nbsp;:&nbsp;valeur&nbsp;maximale&nbsp;du&nbsp;nombre&nbsp;de&nbsp;sommets&nbsp;du&nbsp;graphe.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;:&nbsp;probabilité&nbsp;de&nbsp;présence&nbsp;d'une&nbsp;arete,&nbsp;constante.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nomMethode&nbsp;:&nbsp;chaine&nbsp;de&nbsp;caracteres&nbsp;donnant&nbsp;le&nbsp;nom&nbsp;de&nbsp;la&nbsp;méthode&nbsp;a&nbsp;tester.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fois&nbsp;(facultatif)&nbsp;:&nbsp;nombre&nbsp;de&nbsp;repetitions&nbsp;pour&nbsp;chaque&nbsp;valeur&nbsp;de&nbsp;n&nbsp;et&nbsp;p.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwargs&nbsp;(facultatif)&nbsp;:&nbsp;arguments&nbsp;passes&nbsp;a&nbsp;la&nbsp;methode&nbsp;a&nbsp;tester.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;res&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;taille&nbsp;10&nbsp;avec&nbsp;les&nbsp;temps&nbsp;moyens&nbsp;d'execution&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;secondes&nbsp;pour&nbsp;chaque&nbsp;n.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;taille&nbsp;10&nbsp;contenant&nbsp;les&nbsp;valeurs&nbsp;de&nbsp;n&nbsp;utilises&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dans&nbsp;les&nbsp;tests.</tt></dd></dl>
+ <dl><dt><a name="-testTempsPfunc"><strong>testTempsPfunc</strong></a>(nMax, p, nomMethode, fois=10, **kwargs)</dt><dd><tt>Teste&nbsp;le&nbsp;temps&nbsp;d'execution&nbsp;moyen&nbsp;d'un&nbsp;algorithme&nbsp;pour&nbsp;le&nbsp;probleme&nbsp;de&nbsp;<br>
+couverture&nbsp;de&nbsp;graphe&nbsp;passe&nbsp;par&nbsp;l'argument&nbsp;nomMethode.&nbsp;Son&nbsp;fonctionnement&nbsp;<br>
+est&nbsp;identique&nbsp;a&nbsp;la&nbsp;fonction&nbsp;testTempsN,&nbsp;a&nbsp;part&nbsp;le&nbsp;fait&nbsp;que&nbsp;l'argument&nbsp;p&nbsp;est<br>
+maintenant&nbsp;une&nbsp;fonction&nbsp;de&nbsp;n.<br>
+&nbsp;<br>
+Args&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nMax&nbsp;:&nbsp;valeur&nbsp;maximale&nbsp;du&nbsp;nombre&nbsp;de&nbsp;sommets&nbsp;du&nbsp;graphe.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;:&nbsp;fonction&nbsp;prennant&nbsp;en&nbsp;argument&nbsp;une&nbsp;valeur&nbsp;de&nbsp;n&nbsp;et&nbsp;renvoyant&nbsp;la&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;probabilite&nbsp;de&nbsp;presence&nbsp;d'une&nbsp;arete&nbsp;pour&nbsp;cette&nbsp;valeur&nbsp;de&nbsp;n.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nomMethode&nbsp;:&nbsp;chaine&nbsp;de&nbsp;caracteres&nbsp;donnant&nbsp;le&nbsp;nom&nbsp;de&nbsp;la&nbsp;methode&nbsp;a&nbsp;tester.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fois&nbsp;(facultatif)&nbsp;:&nbsp;nombre&nbsp;de&nbsp;repetitions&nbsp;pour&nbsp;chaque&nbsp;valeur&nbsp;de&nbsp;n&nbsp;et&nbsp;p.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**kwargs&nbsp;(facultatif)&nbsp;:&nbsp;arguments&nbsp;passes&nbsp;a&nbsp;la&nbsp;methode&nbsp;a&nbsp;tester.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;res&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;taille&nbsp;10&nbsp;avec&nbsp;les&nbsp;temps&nbsp;moyens&nbsp;d'execution&nbsp;en&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;secondes&nbsp;pour&nbsp;chaque&nbsp;n.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;:&nbsp;tableau&nbsp;numpy&nbsp;de&nbsp;taille&nbsp;10&nbsp;contenant&nbsp;les&nbsp;valeurs&nbsp;de&nbsp;n&nbsp;utilises&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dans&nbsp;les&nbsp;tests.</tt></dd></dl>
+</td></tr></table>
+</body></html>

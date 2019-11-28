@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module progressBar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>progressBar</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:d%3A%5Cariana%5Cdocumentos%5Cfaculdade%5Ccomplex%5Cprogressbar.py">d:\ariana\documentos\faculdade\complex\progressbar.py</a></font></td></tr></table>
+    <p><tt>Module&nbsp;for&nbsp;creating&nbsp;progress&nbsp;bars.<br>
+&nbsp;<br>
+Typical&nbsp;usage&nbsp;example:<br>
+&nbsp;&nbsp;import&nbsp;progressbar&nbsp;as&nbsp;p<br>
+&nbsp;&nbsp;import&nbsp;time<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;bar&nbsp;=&nbsp;p.Progressbar(150)<br>
+&nbsp;&nbsp;for&nbsp;i&nbsp;in&nbsp;range(150):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p.update(i+1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(0.01)<br>
+&nbsp;<br>
+See&nbsp;docstrings&nbsp;of&nbsp;the&nbsp;class&nbsp;for&nbsp;detailed&nbsp;explanations&nbsp;of&nbsp;the&nbsp;arguments.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="progressBar.html#ProgressBar">ProgressBar</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ProgressBar">class <strong>ProgressBar</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;for&nbsp;representing&nbsp;a&nbsp;progress&nbsp;bar.<br>
+&nbsp;<br>
+Attributes:<br>
+&nbsp;&nbsp;maxValue:&nbsp;largest&nbsp;value&nbsp;being&nbsp;counted&nbsp;by&nbsp;the&nbsp;bar<br>
+&nbsp;&nbsp;width:&nbsp;width&nbsp;used&nbsp;to&nbsp;represent&nbsp;the&nbsp;bar&nbsp;itself.&nbsp;The&nbsp;total&nbsp;width&nbsp;is&nbsp;width+7<br>
+&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;counting&nbsp;the&nbsp;initial&nbsp;[,&nbsp;the&nbsp;final&nbsp;],&nbsp;and&nbsp;the&nbsp;space&nbsp;for&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;percentage.<br>
+&nbsp;&nbsp;symbol:&nbsp;symbol&nbsp;used&nbsp;in&nbsp;the&nbsp;progress&nbsp;bar,&nbsp;should&nbsp;be&nbsp;a&nbsp;single&nbsp;character.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ProgressBar-__init__"><strong>__init__</strong></a>(self, maxValue, width=20, symbol='#')</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ProgressBar-update"><strong>update</strong></a>(self, val)</dt><dd><tt>Updates&nbsp;the&nbsp;progress&nbsp;bar&nbsp;in&nbsp;the&nbsp;current&nbsp;line.<br>
+&nbsp;<br>
+Arguments:<br>
+&nbsp;&nbsp;val:&nbsp;current&nbsp;value.&nbsp;Should&nbsp;be&nbsp;between&nbsp;0&nbsp;and&nbsp;self.<strong>maxVal</strong>&nbsp;(including&nbsp;both).</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
